@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="4fe20bb8-c60f-40f2-b987-a829594a829a" name="Default Changelist" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/RES_Labo_SMTP" />
+  </component>
+  <component name="ProjectId" id="1rFHrCLz2gAk5siEBA3moEO12Az" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.2" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Teo\IdeaProjects\RES_Labo_SMTP\Labo_SMTP" />
+    </key>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="4fe20bb8-c60f-40f2-b987-a829594a829a" name="Default Changelist" comment="" />
+      <created>1618565113754</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1618565113754</updated>
+      <workItem from="1618565117762" duration="1709000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="1433" y="565" key="#Project_Structure" timestamp="1618566402949">
+      <screen x="0" y="0" width="2560" height="1440" />
+    </state>
+    <state x="1433" y="565" key="#Project_Structure/0.0.2560.1440/-2560.0.2560.1440/-4480.314.1920.1080/2560.367.1680.1050@0.0.2560.1440" timestamp="1618566402949" />
+    <state x="1001" y="631" key="vcs.readOnlyHandler.ReadOnlyStatusDialog" timestamp="1618567168812">
+      <screen x="0" y="0" width="2560" height="1440" />
+    </state>
+    <state x="1001" y="631" key="vcs.readOnlyHandler.ReadOnlyStatusDialog/0.0.2560.1440/-2560.0.2560.1440/-4480.314.1920.1080/2560.367.1680.1050@0.0.2560.1440" timestamp="1618567168812" />
+  </component>
+</project>
