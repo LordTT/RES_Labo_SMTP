@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public class Group {
     private final ArrayList<Person> persons = new ArrayList<Person>();
 
-    //pas de constructeur car généré dans parnkGénérator
+    //pas de constructeur car généré dans prankGénérator
 
     public ArrayList<Person> getGroup() {
         return persons;

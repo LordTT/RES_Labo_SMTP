@@ -28,9 +28,24 @@ public class Prank {
         return message;
     }
 
-    public void setMessage(String message) {
+    public void setMessage(String message) {//ici on crée le mail a ensuite envoyer par smtp
         this.message = message;
     }
 
-    //public Mail createMail(){} //ici on crée le mail a ensuite envoyer par smtp
+    public Mail createMail(){
+        Mail mail = new Mail();
+
+        mail.setFrom(sender.getAdress());
+
+        String[] to = new String[victims.size()];
+
+        for(int i = 0; i < victims.size(); i++){
+            to[i] = victims.get(i).getAdress();
+        }
+
+        mail.setMessage(message + "\n\n" + sender.getSurname() + " " + sender.getName());
+
+        return mail;
+
+    }
 }
