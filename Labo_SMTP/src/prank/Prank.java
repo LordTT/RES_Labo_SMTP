@@ -7,14 +7,10 @@ import java.util.ArrayList;
 
 public class Prank {
     private Person sender;
-    private final ArrayList<Person> victims = new ArrayList<>();
+    private ArrayList<Person> victims = new ArrayList<>();
     private String message;
 
     //pas de constructeur car généré dans parnkGénérator
-
-    public Person getSender() {
-        return sender;
-    }
 
     public void setSender(Person sender) {
         this.sender = sender;
@@ -22,6 +18,10 @@ public class Prank {
 
     public ArrayList<Person> getVictims() {
         return victims;
+    }
+
+    public void setVictims(ArrayList<Person> victims){
+        this.victims = victims;
     }
 
     public String getMessage() {
@@ -35,12 +35,12 @@ public class Prank {
     public Mail createMail(){
         Mail mail = new Mail();
 
-        mail.setFrom(sender.getAdress());
+        mail.setFrom(sender.getAddress());
 
-        String[] to = new String[victims.size()];
+        String[] to = new String[getVictims().size()];
 
-        for(int i = 0; i < victims.size(); i++){
-            to[i] = victims.get(i).getAdress();
+        for(int i = 0; i < getVictims().size(); i++){
+            to[i] = getVictims().get(i).getAddress();
         }
 
         mail.setMessage(message + "\n\n" + sender.getSurname() + " " + sender.getName());

@@ -4,12 +4,12 @@ public class Person {
 
     private String surname;
     private String name;
-    private String adress;
+    private String address;
 
     public Person(String surname, String name, String adress){
         this.surname = surname;
         this.name = name;
-        this.adress = adress;
+        this.address = adress;
     }
 
     public String getSurname() {
@@ -28,7 +28,7 @@ public class Person {
         this.name = name;
     }
 
-    public String getAdress() {
-        return adress;
+    public String getAddress() {
+        return address;
     }
 }
