@@ -8,10 +8,10 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 public class PrankGenerator {
-    private ConfigurationManager configurationMananger;
+    private final ConfigurationManager configurationMananger;
 
-    public PrankGenerator(ConfigurationManager configurationManager) {
-        this.configurationMananger = configurationManager;
+    public PrankGenerator() {
+        this.configurationMananger = new ConfigurationManager();
     }
 
     public ArrayList<Prank> createAllPranks() {

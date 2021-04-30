@@ -17,7 +17,7 @@ public class Main {
 
         SmtpClient client = new SmtpClient(serverAddress, serverPort);
 
-        PrankGenerator prankGenerator = new PrankGenerator(configurationManager);
+        PrankGenerator prankGenerator = new PrankGenerator();
         ArrayList<Prank> pranks = prankGenerator.createAllPranks();
 
         for (Prank prank : pranks) {
