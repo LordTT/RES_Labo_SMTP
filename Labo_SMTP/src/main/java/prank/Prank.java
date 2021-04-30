@@ -45,6 +45,8 @@ public class Prank {
             to[i] = getVictims().get(i).getAddress();
         }
 
+        mail.setTo(to);
+
         mail.setMessage(message + "\n\n" + sender.getSurname() + " " + sender.getName());
 
         //récupéere un message random

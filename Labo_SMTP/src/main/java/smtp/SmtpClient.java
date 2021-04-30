@@ -44,6 +44,9 @@ public class SmtpClient {
 
             System.out.println(in.readLine()); // lis le premier message
 
+            out.println("HELO local");
+            out.flush();
+
             String SMTPconfig = in.readLine(); // lit et affiches la config SMTP
             System.out.println(SMTPconfig);
             while( SMTPconfig.contentEquals("250-") ){
@@ -52,16 +55,18 @@ public class SmtpClient {
             }
 
             out.println("MAIL From:<" + mail.getFrom() + ">");
-            System.out.println(in.readLine());
             out.flush();
+            System.out.println(in.readLine());
+
 
             for (String to : mail.getTo()){
                 out.println("RCPT TO:<" + to + ">");
+                out.flush();
                 System.out.println(in.readLine());
             }
-            out.flush();
 
             out.println("DATA");
+            out.flush();
             System.out.println(in.readLine());
 
 
@@ -77,15 +82,16 @@ public class SmtpClient {
 
             out.write( "\r\n" );
 
-
             out.println(mail.getMessage());
 
-            System.out.println(in.readLine());
+            out.println(".");
+            out.flush();
 
+            System.out.println(in.readLine());
 
             out.println("QUIT");
+            out.flush();
 
-            System.out.println(in.readLine());
 
         } catch (UnknownHostException e) {
             e.printStackTrace();
