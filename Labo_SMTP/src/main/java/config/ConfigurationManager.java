@@ -12,23 +12,28 @@ import java.util.Properties;
 public class ConfigurationManager { //groupe offrant des methodes pour aller chercher des infos dans les fichier de config
     private InputStream is;
 
-    public ConfigurationManager(String file) throws FileNotFoundException {
+    private void setInputStream(String file) {
         is = this.getClass().getClassLoader().getResourceAsStream(file);
-
-        if (is == null) {
-            throw new FileNotFoundException("file '" + file + "' not found");
+    }
+    private void closeInputStream() {
+        try {
+            is.close();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 
-    private JsonObject getJsonObject() {
+    private JsonObject getJsonObject(String file) throws FileNotFoundException {
+        setInputStream(file);
         JsonReader reader = Json.createReader(is);
         JsonObject jsonObject = reader.readObject();
         reader.close();
+        closeInputStream();
         return jsonObject;
     }
 
-    private String[] getJsonArrayValue(String property) {
-        JsonObject jsonObject = getJsonObject();
+    private String[] getJsonArrayValue(String file, String property) throws FileNotFoundException {
+        JsonObject jsonObject = getJsonObject(file);
 
         if (jsonObject == null) {
             return new String[0];
@@ -45,16 +50,32 @@ public class ConfigurationManager { //groupe offrant des methodes pour aller che
     }
 
     public String[] getMessages() {
-        return getJsonArrayValue( "messages");
+        try {
+            return getJsonArrayValue("messages.json", "messages");
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        return new String[0];
     }
 
     public String[] getVictims() {
-        return getJsonArrayValue( "victims");
+        try {
+            return getJsonArrayValue( "victims.json", "victims");
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        return new String[0];
     }
 
-    public String getPropValue(String name) throws IOException {
+    public String getPropValue(String name) {
+        setInputStream("config.properties");
         Properties properties = new Properties();
-        properties.load(is);
+        try {
+            properties.load(is);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        closeInputStream();
 
         return properties.getProperty(name);
     }
