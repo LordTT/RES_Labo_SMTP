@@ -1,8 +1,19 @@
 {
   "victims": [
-    "fabio@example.com",
-    "theo@example.com",
-    "john@example.com",
-    "smith@example.com"
+    {
+      "firstname": "Fabio",
+      "lastname": "Marques",
+      "email": "fabio@example.com"
+    },
+    {
+      "firstname": "Theo",
+      "lastname": "Ferrari",
+      "email": "theo@example.com"
+    },
+    {
+      "firstname": "John",
+      "lastname": "Smith",
+      "email": "john@example.com"
+    }
   ]
 }

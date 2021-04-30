@@ -1,10 +1,11 @@
 package config;
 
-import javax.json.Json;
-import javax.json.JsonArray;
-import javax.json.JsonObject;
-import javax.json.JsonReader;
-import java.io.*;
+import mail.Person;
+
+import javax.json.*;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
@@ -32,39 +33,46 @@ public class ConfigurationManager { //groupe offrant des methodes pour aller che
         return jsonObject;
     }
 
-    private String[] getJsonArrayValue(String file, String property) throws FileNotFoundException {
+    private JsonArray getJsonArrayValue(String file, String property) throws FileNotFoundException {
         JsonObject jsonObject = getJsonObject(file);
+        return jsonObject.getJsonArray(property);
+    }
 
-        if (jsonObject == null) {
-            return new String[0];
-        }
-
-        JsonArray jsonArray = jsonObject.getJsonArray(property);
+    public List<String> getMessages() {
         List<String> result = new ArrayList<>();
 
-        for (int i = 0; i < jsonArray.size(); i++ ) {
-            result.add(jsonArray.getString(i));
-        }
-
-        return result.toArray(new String[0]);
-    }
-
-    public String[] getMessages() {
+        JsonArray jsonArray = null;
         try {
-            return getJsonArrayValue("messages.json", "messages");
+            jsonArray = getJsonArrayValue("messages.json", "messages");
+            for (int i = 0; i < jsonArray.size(); i++ ) {
+                result.add(jsonArray.getString(i));
+            }
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
-        return new String[0];
+
+        //return getJsonArrayValue("messages.json", "messages");
+        return result;
     }
 
-    public String[] getVictims() {
+    public List<Person> getVictims() {
+        List<Person> people = new ArrayList<>();
         try {
-            return getJsonArrayValue( "victims.json", "victims");
+            JsonArray victims = getJsonArrayValue("victims.json", "victims");
+            for (JsonValue jsonVictim :
+                    victims) {
+                JsonObject json = jsonVictim.asJsonObject();
+
+                people.add(new Person(
+                        json.getString("surname"),
+                        json.getString("name"),
+                        json.getString("email"))
+                );
+            }
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
-        return new String[0];
+        return people;
     }
 
     public String getPropValue(String name) {
