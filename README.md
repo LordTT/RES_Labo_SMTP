@@ -42,7 +42,20 @@ Once you've configured the previous files with your how settings and data you ca
 
 ## Setup a mock SMTP server with Docker
 
-TODO: explication ici
+
+__Linux__
+
+```bat
+#TODO: commandes linux
+```
+
+__Windows__
+
+
+* Download docker
+* In the docker folder run the "server_image.sh" script
+* Start docker and run the command : `docker run -d -p 25:25 -h 8282:8282 server_mockmock` 
+
 
 ## Description of implementation
 
