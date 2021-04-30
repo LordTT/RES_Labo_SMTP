@@ -6,7 +6,6 @@ import mail.Person;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.logging.Logger;
 
 public class PrankGenerator {
     private ConfigurationManager configurationMananger;
@@ -18,14 +17,14 @@ public class PrankGenerator {
     public ArrayList<Prank> createAllPranks() {
         ArrayList<Prank> pranks = new ArrayList<>();
 
-        int nbGroups = 3; //TODO récupérer le nb de groupes de config
+        int nbGroups = Integer.parseInt(configurationMananger.getPropValue("nbGroups"));
 
-        ArrayList<Person> persons = new ArrayList<>(); //TODO récupérer les victimes de la config
+        ArrayList<Person> persons = (ArrayList<Person>) configurationMananger.getVictims();
 
         ArrayList<Group> groups = createAllGroups(persons, nbGroups);
 
         for (Group group : groups) {
-            Prank  prank = new Prank();
+            Prank prank = new Prank();
             ArrayList<Person> targets = group.getGroup();
             Collections.shuffle(targets);
             prank.setSender(targets.remove(0));
