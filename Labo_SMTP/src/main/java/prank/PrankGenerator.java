@@ -31,8 +31,6 @@ public class PrankGenerator {
             prank.setSender(targets.remove(0));
             prank.setVictims(targets);
 
-            prank.setMessage("sdalkgémlkgrsdakmléàgsraméklà"); //TODO récupérer un message au hazard de la config
-
             pranks.add(prank);
 
         }

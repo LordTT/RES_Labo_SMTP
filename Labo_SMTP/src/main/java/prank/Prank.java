@@ -1,16 +1,19 @@
 package prank;
 
+import config.ConfigurationManager;
 import mail.Mail;
 import mail.Person;
+import smtp.SmtpClient;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class Prank {
     private Person sender;
     private ArrayList<Person> victims = new ArrayList<>();
-    private String message;
 
-    //pas de constructeur car généré dans parnkGénérator
+
+    //pas de constructeur car généré dans prankGenerator
 
     public void setSender(Person sender) {
         this.sender = sender;
@@ -24,15 +27,7 @@ public class Prank {
         this.victims = victims;
     }
 
-    public String getMessage() {
-        return message;
-    }
-
-    public void setMessage(String message) {//ici on crée le mail a ensuite envoyer par smtp
-        this.message = message;
-    }
-
-    public Mail createMail(){
+    public void play(){
         Mail mail = new Mail();
 
         mail.setFrom(sender.getAddress());
@@ -43,9 +38,10 @@ public class Prank {
             to[i] = getVictims().get(i).getAddress();
         }
 
-        mail.setMessage(message + "\n\n" + sender.getSurname() + " " + sender.getName());
+//récupéere un message random
+        mail.setMessage("uwu" + "\n\n" + sender.getSurname() + " " + sender.getName());
 
-        return mail;
+        SmtpClient.getInstance().send(mail);
 
     }
 }

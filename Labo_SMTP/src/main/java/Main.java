@@ -15,13 +15,14 @@ public class Main {
         String serverAddress = configurationManager.getPropValue("smtpServerAddress");
         int serverPort = Integer.parseInt(configurationManager.getPropValue("smtpServerPort"));
 
-        SmtpClient client = new SmtpClient(serverAddress, serverPort);
+        SmtpClient.getInstance().setServerAdress(serverAddress);
+        SmtpClient.getInstance().setServerPort(serverPort);
 
         PrankGenerator prankGenerator = new PrankGenerator(configurationManager);
         ArrayList<Prank> pranks = prankGenerator.createAllPranks();
 
         for (Prank prank : pranks) {
-            client.send( prank.createMail());
+            prank.play();
         }
     }
 
