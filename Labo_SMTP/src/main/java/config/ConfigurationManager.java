@@ -4,44 +4,58 @@ import javax.json.Json;
 import javax.json.JsonArray;
 import javax.json.JsonObject;
 import javax.json.JsonReader;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.InputStream;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Properties;
 
-public class ConfigurationManager { //groupe offraqnt des methodes pour aller chercher des infos dans les fichier de config
-    private static JsonObject getJsonObject(String path) {
-        File jsonInputFile = new File(path);
-        InputStream is;
-        JsonObject jsonObject = null;
+public class ConfigurationManager { //groupe offrant des methodes pour aller chercher des infos dans les fichier de config
+    private InputStream is;
 
-        try {
-            is = new FileInputStream(jsonInputFile);
+    public ConfigurationManager(String file) throws FileNotFoundException {
+        is = this.getClass().getClassLoader().getResourceAsStream(file);
 
-            JsonReader reader = Json.createReader(is);
-            jsonObject = reader.readObject();
-            reader.close();
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
+        if (is == null) {
+            throw new FileNotFoundException("file '" + file + "' not found");
         }
+    }
+
+    private JsonObject getJsonObject() {
+        JsonReader reader = Json.createReader(is);
+        JsonObject jsonObject = reader.readObject();
+        reader.close();
         return jsonObject;
     }
-    public static String[] getMessages() {
-        JsonObject jsonMessage = getJsonObject("./src/main/java/config/messages.json");
 
-        if (jsonMessage == null) {
+    private String[] getJsonArrayValue(String property) {
+        JsonObject jsonObject = getJsonObject();
+
+        if (jsonObject == null) {
             return new String[0];
         }
 
-        JsonArray jsonArrayMessages = jsonMessage.getJsonArray("messages");
-        List<String> messages = new ArrayList<>();
+        JsonArray jsonArray = jsonObject.getJsonArray(property);
+        List<String> result = new ArrayList<>();
 
-        for (int i = 0; i < jsonArrayMessages.size(); i++ ) {
-            messages.add(jsonArrayMessages.getString(i));
+        for (int i = 0; i < jsonArray.size(); i++ ) {
+            result.add(jsonArray.getString(i));
         }
 
-        return messages.toArray(new String[0]);
+        return result.toArray(new String[0]);
+    }
+
+    public String[] getMessages() {
+        return getJsonArrayValue( "messages");
+    }
+
+    public String[] getVictims() {
+        return getJsonArrayValue( "victims");
+    }
+
+    public String getPropValue(String name) throws IOException {
+        Properties properties = new Properties();
+        properties.load(is);
+
+        return properties.getProperty(name);
     }
 }
