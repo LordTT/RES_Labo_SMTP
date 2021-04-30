@@ -1,7 +1,9 @@
 package prank;
 
+import config.ConfigurationManager;
 import mail.Mail;
 import mail.Person;
+import smtp.SmtpClient;
 
 import java.util.ArrayList;
 
@@ -32,7 +34,7 @@ public class Prank {
         this.message = message;
     }
 
-    public Mail createMail(){
+    public void play(){
         Mail mail = new Mail();
 
         mail.setFrom(sender.getAddress());
@@ -45,7 +47,10 @@ public class Prank {
 
         mail.setMessage(message + "\n\n" + sender.getSurname() + " " + sender.getName());
 
-        return mail;
+        //récupéere un message random
+        mail.setMessage(new ConfigurationManager().getRandomMessage() + "\n\n" + sender.getSurname() + " " + sender.getName());
+
+        SmtpClient.getInstance().send(mail);
 
     }
 }

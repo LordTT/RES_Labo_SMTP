@@ -1,5 +1,6 @@
 package smtp;
 
+import config.ConfigurationManager;
 import mail.Mail;
 
 import java.awt.image.BufferedImage;
@@ -13,9 +14,13 @@ public class SmtpClient {
     private String serverAdress = "217.0.0.1";
     private int serverPort = 25;
 
-    public SmtpClient(String smtpServeurAdresse, int smtpServeurPort ){
-        this.serverAdress = smtpServeurAdresse;
-        this.serverPort = smtpServeurPort;
+    private static SmtpClient instance;
+
+
+    private SmtpClient(){
+        ConfigurationManager configurationManager = new ConfigurationManager();
+        this.serverAdress = configurationManager.getPropValue("smtpServerAddress");
+        this.serverPort = Integer.parseInt(configurationManager.getPropValue("smtpServerPort"));
     }
 
     public void send (Mail mail){
@@ -88,4 +93,14 @@ public class SmtpClient {
             e.printStackTrace();
         }
     }
+
+
+    public static SmtpClient getInstance(){
+        if (instance == null) {
+            instance = new SmtpClient();
+        }
+
+        return instance;
+    }
+
 }
