@@ -30,8 +30,8 @@ __Windows__
 ```bat
 cd <app_root>\src\main\resources
 copy config.properties.example config.properties
-cp messages.json.example messages.json
-cp victims.json.example victims.json
+copy messages.json.example messages.json
+copy victims.json.example victims.json
 ```
 
 
@@ -64,7 +64,7 @@ __Windows__
 
 * Download docker
 * Run the commands :
-```bash
+```bat
 cd <repo>\docker
 docker build --tag server_mockmock ./DockerfileServer
 docker run -d -p 25:25 -p 8282:8282 -h 8282:8282 server_mockmock
