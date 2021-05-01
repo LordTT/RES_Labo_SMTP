@@ -1,8 +1,10 @@
 # Teaching-HEIGVD-RES-2021-Labo-SMTP
 
-TODO: brief ici
+The main purpose of this project is to learn the SMTP protocol by implementing an application who plays pranks.
 
+The application is a TCP client in Java who uses the socket API to communicate with an smtp server.
 
+TODO: add more details
 
 ## Prerequisites
 
@@ -59,4 +61,31 @@ __Windows__
 
 ## Description of implementation
 
-TODO: class digramme ici
+We have spitted our application logic into 4 different packages that are described bellow
+
+TODO: insert class diagram
+
+### Config
+
+This package contains a class named ConfigurationManager that is used to read values from configuration files
+
+### Mail
+
+This package contains all classes needed to manage mails:
+
+* Group: this class represents a group of people
+* Person: this class represents a person
+* Mail: this class represents an email
+
+### Prank
+
+This package contains all the logic related to the pranks
+
+* PrankGenerator: this class is used create a new prank campaign following configuration files
+* Prank: this class represents a prank
+
+
+
+### SMTP
+
+This package contains a class named SmtpClient who is the java smtp client who used to communicate with an smtp server.
