@@ -4,7 +4,7 @@ The main purpose of this project is to learn the SMTP protocol by implementing a
 
 The application is a TCP client in Java who uses the socket API to communicate with an smtp server.
 
-TODO: add more details
+The client will generate 1 or more groups of at least 3 people from a json configuration file (1 sender who will appear to have sent the prank mails from a victims perspective and 2 or more victims who will receive the prank mail). The content of the prank mails will be randomly chosen from a json configuration file. The client will then send those prank mails to the victims. The IP and the port of the SMTP server and the number of groups created can be modified in a configuration file.
 
 ## Prerequisites
 
@@ -48,6 +48,10 @@ Once you've configured the previous files with your how settings and data you ca
 
 ## Setup a mock SMTP server with Docker
 
+To create a fake SMTP server for testing purposes we use MockMock. MockMock is a SMTP server that allows to send test mails without really sending them to the victims. I our case we chose to host the Mockock server on a docker container. 
+
+To use the fake SMTP server please follow the guide :
+
 
 __Linux__
 * Download docker
@@ -69,7 +73,9 @@ cd <repo>\docker
 docker build --tag server_mockmock ./DockerfileServer
 docker run -d -p 25:25 -p 8282:8282 -h 8282:8282 server_mockmock
 ```
+After these steps your fake SMTP server should be up and running. You can access it at the localhost adress (127.0.0.1). For the web browser interface use the port 8282 and for the SMTP mail server use the port 25.
 
+Link to the MockMock repo : https://github.com/tweakers/MockMock
 
 ## Description of implementation
 
