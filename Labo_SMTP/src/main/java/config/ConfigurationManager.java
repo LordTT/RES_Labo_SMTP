@@ -11,12 +11,24 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Properties;
 
-public class ConfigurationManager { //groupe offrant des methodes pour aller chercher des infos dans les fichier de config
+/**
+ * Class offering methods to get infos from the config files
+ */
+public class ConfigurationManager {
     private InputStream is;
 
+    /**
+     * Stes the inputStream of the class
+     *
+     * @param file read file
+     */
     private void setInputStream(String file) {
         is = this.getClass().getClassLoader().getResourceAsStream(file);
     }
+
+    /**
+     * Closes the inputstream of the class
+     */
     private void closeInputStream() {
         try {
             is.close();
@@ -25,6 +37,13 @@ public class ConfigurationManager { //groupe offrant des methodes pour aller che
         }
     }
 
+    /**
+     * Gets a JSON object from a specifed file
+     *
+     * @param file File from which the json object is read
+     * @return Json Object gotten from a file
+     * @throws FileNotFoundException
+     */
     private JsonObject getJsonObject(String file) throws FileNotFoundException {
         setInputStream(file);
         JsonReader reader = Json.createReader(is);
@@ -34,18 +53,29 @@ public class ConfigurationManager { //groupe offrant des methodes pour aller che
         return jsonObject;
     }
 
+    /**
+     * @param file     gets an array value from a specified json file
+     * @param property property to find the correct value
+     * @return the JsonArray
+     * @throws FileNotFoundException
+     */
     private JsonArray getJsonArrayValue(String file, String property) throws FileNotFoundException {
         JsonObject jsonObject = getJsonObject(file);
         return jsonObject.getJsonArray(property);
     }
 
+    /**
+     * Gets all the messsages from the messages.json file
+     *
+     * @return a List of all the messages
+     */
     public List<String> getMessages() {
         List<String> result = new ArrayList<>();
 
         JsonArray jsonArray = null;
         try {
             jsonArray = getJsonArrayValue("messages.json", "messages");
-            for (int i = 0; i < jsonArray.size(); i++ ) {
+            for (int i = 0; i < jsonArray.size(); i++) {
                 result.add(jsonArray.getString(i));
             }
         } catch (FileNotFoundException e) {
@@ -56,12 +86,22 @@ public class ConfigurationManager { //groupe offrant des methodes pour aller che
         return result;
     }
 
-    public String getRandomMessage(){
+    /**
+     * Gets a random message from the messages.json file
+     *
+     * @return a random message
+     */
+    public String getRandomMessage() {
         List<String> messages = getMessages();
         Collections.shuffle(messages);
         return messages.get(0);
     }
 
+    /**
+     * Gets all the victims form the victims.json file
+     *
+     * @return A Person list of victims
+     */
     public List<Person> getVictims() {
         List<Person> people = new ArrayList<>();
         try {
@@ -82,6 +122,12 @@ public class ConfigurationManager { //groupe offrant des methodes pour aller che
         return people;
     }
 
+    /**
+     * Gets a property value from the config.properties file
+     *
+     * @param name name of the property to get
+     * @return the value of the property
+     */
     public String getPropValue(String name) {
         setInputStream("config.properties");
         Properties properties = new Properties();

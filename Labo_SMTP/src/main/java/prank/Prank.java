@@ -7,49 +7,51 @@ import smtp.SmtpClient;
 
 import java.util.ArrayList;
 
+/**
+ * This class contains all that is needed to send a prank
+ */
 public class Prank {
     private Person sender;
     private ArrayList<Person> victims = new ArrayList<>();
     private String message;
 
-    //pas de constructeur car généré dans parnkGénérator
+    //No constructor: this class wil be create in the PrankGenerator class
 
+    /**
+     * Sets the sender of the prank
+     *
+     * @param sender Person that will send the prank mail
+     */
     public void setSender(Person sender) {
         this.sender = sender;
     }
 
-    public ArrayList<Person> getVictims() {
-        return victims;
-    }
-
-    public void setVictims(ArrayList<Person> victims){
+    /**
+     * Sets the victims of the prank
+     *
+     * @param victims An arrayList of Persons containing the victims of the prank
+     */
+    public void setVictims(ArrayList<Person> victims) {
         this.victims = victims;
     }
 
-    public String getMessage() {
-        return message;
-    }
-
-    public void setMessage(String message) {//ici on crée le mail a ensuite envoyer par smtp
-        this.message = message;
-    }
-
-    public void play(){
+    /**
+     * Plays the pranks : generates a mail with a random message from messages.json ans sends it to the MTP server
+     */
+    public void play() {
         Mail mail = new Mail();
 
         mail.setFrom(sender.getAddress());
 
-        String[] to = new String[getVictims().size()];
+        String[] to = new String[victims.size()];
 
-        for(int i = 0; i < getVictims().size(); i++){
-            to[i] = getVictims().get(i).getAddress();
+        for (int i = 0; i < victims.size(); i++) {
+            to[i] = victims.get(i).getAddress();
         }
 
         mail.setTo(to);
 
-        mail.setMessage(message + "\n\n" + sender.getSurname() + " " + sender.getName());
-
-        //récupéere un message random
+        //Gets a random message from messages.json
         mail.setMessage(new ConfigurationManager().getRandomMessage() + "\n\n" + sender.getSurname() + " " + sender.getName());
 
         SmtpClient.getInstance().send(mail);
