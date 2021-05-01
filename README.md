@@ -28,7 +28,10 @@ cp victims.json.example victims.json
 __Windows__
 
 ```bat
-#TODO: commandes windows
+cd <app_root>\src\main\resources
+copy config.properties.example config.properties
+cp messages.json.example messages.json
+cp victims.json.example victims.json
 ```
 
 
@@ -47,8 +50,11 @@ Once you've configured the previous files with your how settings and data you ca
 
 
 __Linux__
-
+* Download docker
+* Run the commands :
 ```bash
+TODO : check if this command is correct for linux
+
 cd <repo>/docker
 docker build --tag server_mockmock ./DockerfileServer
 docker run -d -p 25:25 -h 8282:8282 server_mockmock
@@ -56,10 +62,13 @@ docker run -d -p 25:25 -h 8282:8282 server_mockmock
 
 __Windows__
 
-
 * Download docker
-* In the docker folder run the "server_image.sh" script
-* Start docker and run the command : `docker run -d -p 25:25 -h 8282:8282 server_mockmock` 
+* Run the commands :
+```bash
+cd <repo>\docker
+docker build --tag server_mockmock ./DockerfileServer
+docker run -d -p 25:25 -p 8282:8282 -h 8282:8282 server_mockmock
+```
 
 
 ## Description of implementation
