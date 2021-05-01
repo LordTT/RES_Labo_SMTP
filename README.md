@@ -10,6 +10,7 @@ TODO: add more details
 
 * Java 11 or greater
 * Maven
+* Docker (only needed for the docker mock server)
 
 ## Install instructions
 
@@ -47,8 +48,10 @@ Once you've configured the previous files with your how settings and data you ca
 
 __Linux__
 
-```bat
-#TODO: commandes linux
+```bash
+cd <repo>/docker
+docker build --tag server_mockmock ./DockerfileServer
+docker run -d -p 25:25 -h 8282:8282 server_mockmock
 ```
 
 __Windows__
@@ -63,7 +66,7 @@ __Windows__
 
 We have spitted our application logic into 4 different packages that are described bellow
 
-TODO: insert class diagram
+![class diagram](./figures/class_diagram.png)
 
 ### Config
 
