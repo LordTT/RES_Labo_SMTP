@@ -82,7 +82,6 @@ public class ConfigurationManager {
             e.printStackTrace();
         }
 
-        //return getJsonArrayValue("messages.json", "messages");
         return result;
     }
 
