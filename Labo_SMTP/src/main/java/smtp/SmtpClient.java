@@ -18,8 +18,8 @@ public class SmtpClient {
 
     static final Logger LOG = Logger.getLogger( SmtpClient.class.getName());
 
-    private String serverAdress = "217.0.0.1";
-    private int serverPort = 25;
+    private String serverAdress;
+    private int serverPort;
 
     private static SmtpClient instance;
 
@@ -39,9 +39,9 @@ public class SmtpClient {
      * @param mail Mail so send
      */
     public void send(Mail mail) {
-        Socket clientSocket = null;
-        OutputStream os = null;
-        InputStream is = null;
+        Socket clientSocket;
+        OutputStream os;
+        InputStream is;
 
         try {
             LOG.log(Level.INFO, "Sending mail...");
@@ -59,56 +59,60 @@ public class SmtpClient {
                 throw new IOException("Failed stream opening");
             }
 
-            LOG.log(Level.INFO, in.readLine()); // lis le premier message
+            //Read the first line
+            LOG.log(Level.INFO, in.readLine());
 
-            out.println("HELO local");
+            //EHLO
+            out.println("EHLO local");
             out.flush();
 
-            String SMTPconfig = in.readLine(); // lit et affiches la config SMTP
-            LOG.log(Level.INFO, SMTPconfig); // lis le premier message
+            //Read server infos
+            String SMTPconfig = in.readLine();
+            LOG.log(Level.INFO, SMTPconfig);
             while (SMTPconfig.contentEquals("250-")) {
                 SMTPconfig = in.readLine();
-                LOG.log(Level.INFO, SMTPconfig); // lis le premier message
+                LOG.log(Level.INFO, SMTPconfig);
             }
 
+            //sender
             out.println("MAIL From:<" + mail.getFrom() + ">");
             out.flush();
             LOG.log(Level.INFO, in.readLine());
 
-
+            //receivers
             for (String to : mail.getTo()) {
                 out.println("RCPT TO:<" + to + ">");
                 out.flush();
                 LOG.log(Level.INFO, in.readLine());
             }
 
+            //Start data writing
             out.println("DATA");
             out.flush();
             LOG.log(Level.INFO, in.readLine());
 
-
+            //encoding
             out.write("Content-Type: text/plain; charset=\"utf-8\"\r\n");
 
+            //sender
             out.write("From: " + mail.getFrom() + "\r\n");
 
+            //receivers
             out.write("To: " + mail.getTo()[0]);
-
             for (int i = 1; i < mail.getTo().length; ++i) {
                 out.write(", " + mail.getTo()[i]);
             }
-
             out.write("\r\n");
 
+            //Message body and subject
             out.println(mail.getMessage());
-
             out.println(".");
             out.flush();
-
             LOG.log(Level.INFO, in.readLine());
 
+            //Quit
             out.println("QUIT");
             out.flush();
-
             LOG.log(Level.INFO, "Mail sent");
 
 

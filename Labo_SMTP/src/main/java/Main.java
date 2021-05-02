@@ -1,7 +1,6 @@
-import config.ConfigurationManager;
+
 import prank.Prank;
 import prank.PrankGenerator;
-import smtp.SmtpClient;
 
 import java.util.ArrayList;
 
