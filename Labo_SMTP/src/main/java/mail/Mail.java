@@ -6,7 +6,6 @@ package mail;
 public class Mail {
     private String from;
     private String[] to = new String[0];
-    private String subject;
     private String message;
 
     /**

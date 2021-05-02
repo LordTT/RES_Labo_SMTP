@@ -8,7 +8,7 @@ import java.util.ArrayList;
 public class Main {
 
     public static void main(String[] args){
-        //Generates all the pranks
+        //Generates all the pranks from the json files
         PrankGenerator prankGenerator = new PrankGenerator();
         ArrayList<Prank> pranks = prankGenerator.createAllPranks();
 

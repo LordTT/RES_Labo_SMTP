@@ -6,7 +6,7 @@ import java.util.ArrayList;
  * Class representing a group of people
  */
 public class Group {
-    private final ArrayList<Person> persons = new ArrayList<Person>();
+    private final ArrayList<Person> persons = new ArrayList<>();
 
     /**
      * Gets the members of the group

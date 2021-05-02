@@ -13,7 +13,6 @@ import java.util.ArrayList;
 public class Prank {
     private Person sender;
     private ArrayList<Person> victims = new ArrayList<>();
-    private String message;
 
     //No constructor: this class wil be create in the PrankGenerator class
 
