@@ -4,7 +4,9 @@ The main purpose of this project is to learn the SMTP protocol by implementing a
 
 The application is a TCP client in Java who uses the socket API to communicate with an smtp server.
 
-The client will generate 1 or more groups of at least 3 people from a json configuration file (1 sender who will appear to have sent the prank mails from a victims perspective and 2 or more victims who will receive the prank mail). The content of the prank mails will be randomly chosen from a json configuration file. The client will then send those prank mails to the victims. The IP and the port of the SMTP server and the number of groups created can be modified in a configuration file.
+The application is able to send prank emails from fake senders to a number of victims.
+
+The client will generate 1 or more groups of at least 3 people from a json configuration file (1 sender who will appear to have sent the prank mails from a victims perspective and 2 or more victims who will receive the prank mail per group). The content of the prank mails will be randomly chosen from a json configuration file. The client will then send those prank mails to the victims. The IP adress of the SMPT server, the port of the SMTP server and the number of groups created can be modified in a configuration file.
 
 ## Prerequisites
 
