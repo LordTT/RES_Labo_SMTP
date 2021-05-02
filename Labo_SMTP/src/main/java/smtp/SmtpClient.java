@@ -3,13 +3,11 @@ package smtp;
 import config.ConfigurationManager;
 import mail.Mail;
 
-import java.awt.image.BufferedImage;
 import java.io.*;
 import java.net.Socket;
 import java.net.UnknownHostException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import java.util.logging.SocketHandler;
 
 /**
  * An SMTP client, this calss is a singleton
