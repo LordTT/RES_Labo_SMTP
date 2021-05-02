@@ -63,7 +63,7 @@ public class SmtpClient {
             LOG.log(Level.INFO, in.readLine());
 
             //EHLO
-            out.println("EHLO local");
+            out.println("EHLO pranker");
             out.flush();
 
             //Read server infos
@@ -126,7 +126,7 @@ public class SmtpClient {
     /**
      * Returns the instance of SmtpClient or creates one if there is none
      *
-     * @return
+     * @return the instance of the SmtpClient class
      */
     public static SmtpClient getInstance() {
         if (instance == null) {

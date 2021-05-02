@@ -35,7 +35,7 @@ public class Prank {
     }
 
     /**
-     * Plays the pranks : generates a mail with a random message from messages.json ans sends it to the MTP server
+     * Plays the pranks : generates a mail with a random message from messages.json ans sends it to the SMTP server
      */
     public void play() {
         Mail mail = new Mail();
